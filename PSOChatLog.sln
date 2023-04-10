@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSOChatLog", "PSOChatLog\PSOChatLog.csproj", "{72268F3E-2D64-4FCE-A22F-1CCE89DA876B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		DebugTexTra|Any CPU = DebugTexTra|Any CPU
+		Release|Any CPU = Release|Any CPU
+		ReleaseTexTra|Any CPU = ReleaseTexTra|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72268F3E-2D64-4FCE-A22F-1CCE89DA876B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72268F3E-2D64-4FCE-A22F-1CCE89DA876B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72268F3E-2D64-4FCE-A22F-1CCE89DA876B}.DebugTexTra|Any CPU.ActiveCfg = DebugTexTra|Any CPU
+		{72268F3E-2D64-4FCE-A22F-1CCE89DA876B}.DebugTexTra|Any CPU.Build.0 = DebugTexTra|Any CPU
+		{72268F3E-2D64-4FCE-A22F-1CCE89DA876B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72268F3E-2D64-4FCE-A22F-1CCE89DA876B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72268F3E-2D64-4FCE-A22F-1CCE89DA876B}.ReleaseTexTra|Any CPU.ActiveCfg = ReleaseTexTra|Any CPU
+		{72268F3E-2D64-4FCE-A22F-1CCE89DA876B}.ReleaseTexTra|Any CPU.Build.0 = ReleaseTexTra|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2CED5ACD-117C-416A-9C54-562BC04B002E}
+	EndGlobalSection
+EndGlobal
