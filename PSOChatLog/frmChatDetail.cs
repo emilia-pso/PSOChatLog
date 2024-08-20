@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace PSOChatLog
@@ -926,14 +927,15 @@ namespace PSOChatLog
         }
         private void DoResize()
         {
-            //800, 600
-            //782, 520
-            lstCharacterList.Height = this.Height - 392;//600時208
-            txtRemarks.Height = this.Height - 392;//600時208
-            //708, 281
-            //708, 486
-            btnDown.Top = this.Height - 319;//600時281
-            btnDownMax.Top = this.Height - 114;//600時486
+            var lNormalHeight = 740;
+            var lNormalWidth = 1061;
+
+            lstCharacterList.Height = this.Height - (lstCharacterList.Top + (lNormalHeight - lstCharacterList.Top - 256));
+
+            txtRemarks.Height = this.Height - (txtRemarks.Top + (lNormalHeight - txtRemarks.Top - 256));
+
+            btnDown.Top = this.Height - (lNormalHeight - 351); 
+            btnDownMax.Top = this.Height - (lNormalHeight - 608);
         }
         private void timer1_Tick(object sender, EventArgs e)
         {

@@ -1279,7 +1279,7 @@ namespace PSOChatLog
          * ラベルを初期化するよ
          * 新しいラベルができたらここで定義してね
          */
-        public static void initializeForm2(Form form)
+        public static void initializeFrmSetting(Form form)
         {
             Dictionary<string, string> labels = form2_Labels(labelLanguage_GP());
             initializeForm(form, labels);

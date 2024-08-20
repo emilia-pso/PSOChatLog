@@ -66,6 +66,8 @@ namespace PSOChatLog
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            button1.Visible = false;
+
             stop();
             listBox2.Items.Clear();
             List<string> strBuf = new List<string>();
@@ -100,14 +102,20 @@ namespace PSOChatLog
             {
                 listBox2.Items.Add(strBuf[i]);
             }
+
+            button1.Visible = true;
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            button2.Visible = false;
+
             var strSrc = listBox2.Items[listBox2.SelectedIndex].ToString();
             var strDst = System.Environment.CurrentDirectory + "\\PSOChatLog" + Variable.strExeType + ".ini";
             System.IO.File.Copy(strSrc, strDst, true);
 
-            MessageBox.Show("設定ファイルをコピーしました！");
+            MessageBox.Show("Copied the config file!\r\n設定ファイルをコピーしました！");
+
+            button2.Visible = true;
         }
         public void stop()
         {

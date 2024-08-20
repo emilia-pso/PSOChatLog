@@ -66,9 +66,10 @@ namespace PSOChatLog
             // cmdALL
             // 
             this.cmdALL.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.cmdALL.Location = new System.Drawing.Point(12, 47);
+            this.cmdALL.Location = new System.Drawing.Point(16, 59);
+            this.cmdALL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdALL.Name = "cmdALL";
-            this.cmdALL.Size = new System.Drawing.Size(75, 34);
+            this.cmdALL.Size = new System.Drawing.Size(100, 42);
             this.cmdALL.TabIndex = 10;
             this.cmdALL.Text = "全文";
             this.cmdALL.UseVisualStyleBackColor = true;
@@ -77,25 +78,28 @@ namespace PSOChatLog
             // txtRow
             // 
             this.txtRow.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtRow.Location = new System.Drawing.Point(93, 12);
+            this.txtRow.Location = new System.Drawing.Point(124, 15);
+            this.txtRow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRow.Name = "txtRow";
-            this.txtRow.Size = new System.Drawing.Size(120, 31);
+            this.txtRow.Size = new System.Drawing.Size(159, 37);
             this.txtRow.TabIndex = 9;
             // 
             // txtALL
             // 
             this.txtALL.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtALL.Location = new System.Drawing.Point(93, 49);
+            this.txtALL.Location = new System.Drawing.Point(124, 61);
+            this.txtALL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtALL.Name = "txtALL";
-            this.txtALL.Size = new System.Drawing.Size(609, 31);
+            this.txtALL.Size = new System.Drawing.Size(811, 37);
             this.txtALL.TabIndex = 11;
             // 
             // cmdID
             // 
             this.cmdID.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.cmdID.Location = new System.Drawing.Point(12, 84);
+            this.cmdID.Location = new System.Drawing.Point(16, 105);
+            this.cmdID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdID.Name = "cmdID";
-            this.cmdID.Size = new System.Drawing.Size(75, 34);
+            this.cmdID.Size = new System.Drawing.Size(100, 42);
             this.cmdID.TabIndex = 12;
             this.cmdID.Text = "ID";
             this.cmdID.UseVisualStyleBackColor = true;
@@ -104,25 +108,28 @@ namespace PSOChatLog
             // txtID
             // 
             this.txtID.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtID.Location = new System.Drawing.Point(93, 86);
+            this.txtID.Location = new System.Drawing.Point(124, 108);
+            this.txtID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(120, 31);
+            this.txtID.Size = new System.Drawing.Size(159, 37);
             this.txtID.TabIndex = 13;
             // 
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtName.Location = new System.Drawing.Point(93, 123);
+            this.txtName.Location = new System.Drawing.Point(124, 154);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(609, 31);
+            this.txtName.Size = new System.Drawing.Size(811, 37);
             this.txtName.TabIndex = 15;
             // 
             // cmdName
             // 
             this.cmdName.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.cmdName.Location = new System.Drawing.Point(12, 121);
+            this.cmdName.Location = new System.Drawing.Point(16, 151);
+            this.cmdName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdName.Name = "cmdName";
-            this.cmdName.Size = new System.Drawing.Size(75, 34);
+            this.cmdName.Size = new System.Drawing.Size(100, 42);
             this.cmdName.TabIndex = 14;
             this.cmdName.Text = "名前";
             this.cmdName.UseVisualStyleBackColor = true;
@@ -131,9 +138,10 @@ namespace PSOChatLog
             // btnUpMax
             // 
             this.btnUpMax.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnUpMax.Location = new System.Drawing.Point(708, 1);
+            this.btnUpMax.Location = new System.Drawing.Point(944, 1);
+            this.btnUpMax.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpMax.Name = "btnUpMax";
-            this.btnUpMax.Size = new System.Drawing.Size(75, 75);
+            this.btnUpMax.Size = new System.Drawing.Size(100, 94);
             this.btnUpMax.TabIndex = 21;
             this.btnUpMax.Text = "▲";
             this.btnUpMax.UseVisualStyleBackColor = true;
@@ -142,9 +150,10 @@ namespace PSOChatLog
             // btnUp
             // 
             this.btnUp.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnUp.Location = new System.Drawing.Point(708, 76);
+            this.btnUp.Location = new System.Drawing.Point(944, 95);
+            this.btnUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(75, 205);
+            this.btnUp.Size = new System.Drawing.Size(100, 256);
             this.btnUp.TabIndex = 22;
             this.btnUp.Text = "△";
             this.btnUp.UseVisualStyleBackColor = true;
@@ -153,9 +162,10 @@ namespace PSOChatLog
             // btnDown
             // 
             this.btnDown.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnDown.Location = new System.Drawing.Point(708, 281);
+            this.btnDown.Location = new System.Drawing.Point(944, 351);
+            this.btnDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(75, 205);
+            this.btnDown.Size = new System.Drawing.Size(100, 256);
             this.btnDown.TabIndex = 23;
             this.btnDown.Text = "▽";
             this.btnDown.UseVisualStyleBackColor = true;
@@ -164,9 +174,10 @@ namespace PSOChatLog
             // btnDownMax
             // 
             this.btnDownMax.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnDownMax.Location = new System.Drawing.Point(708, 486);
+            this.btnDownMax.Location = new System.Drawing.Point(944, 608);
+            this.btnDownMax.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDownMax.Name = "btnDownMax";
-            this.btnDownMax.Size = new System.Drawing.Size(75, 75);
+            this.btnDownMax.Size = new System.Drawing.Size(100, 94);
             this.btnDownMax.TabIndex = 24;
             this.btnDownMax.Text = "▼";
             this.btnDownMax.UseVisualStyleBackColor = true;
@@ -175,9 +186,10 @@ namespace PSOChatLog
             // cmdText
             // 
             this.cmdText.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.cmdText.Location = new System.Drawing.Point(12, 158);
+            this.cmdText.Location = new System.Drawing.Point(16, 198);
+            this.cmdText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmdText.Name = "cmdText";
-            this.cmdText.Size = new System.Drawing.Size(75, 34);
+            this.cmdText.Size = new System.Drawing.Size(100, 42);
             this.cmdText.TabIndex = 16;
             this.cmdText.Text = "会話";
             this.cmdText.UseVisualStyleBackColor = true;
@@ -186,27 +198,30 @@ namespace PSOChatLog
             // txtText
             // 
             this.txtText.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtText.Location = new System.Drawing.Point(93, 160);
+            this.txtText.Location = new System.Drawing.Point(124, 200);
+            this.txtText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtText.Name = "txtText";
-            this.txtText.Size = new System.Drawing.Size(609, 31);
+            this.txtText.Size = new System.Drawing.Size(811, 37);
             this.txtText.TabIndex = 17;
             // 
             // lblRow
             // 
             this.lblRow.AutoSize = true;
             this.lblRow.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblRow.Location = new System.Drawing.Point(12, 15);
+            this.lblRow.Location = new System.Drawing.Point(16, 19);
+            this.lblRow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRow.Name = "lblRow";
-            this.lblRow.Size = new System.Drawing.Size(34, 24);
+            this.lblRow.Size = new System.Drawing.Size(43, 30);
             this.lblRow.TabIndex = 8;
             this.lblRow.Text = "行";
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(12, 199);
+            this.radioButton1.Location = new System.Drawing.Point(16, 249);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(160, 16);
+            this.radioButton1.Size = new System.Drawing.Size(199, 19);
             this.radioButton1.TabIndex = 19;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "選択された行のIDを表示する";
@@ -216,9 +231,10 @@ namespace PSOChatLog
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(12, 221);
+            this.radioButton2.Location = new System.Drawing.Point(16, 276);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(152, 16);
+            this.radioButton2.Size = new System.Drawing.Size(190, 19);
             this.radioButton2.TabIndex = 20;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "入力したIDを検索表示する";
@@ -228,18 +244,20 @@ namespace PSOChatLog
             // lblSharp
             // 
             this.lblSharp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblSharp.Location = new System.Drawing.Point(10, 195);
+            this.lblSharp.Location = new System.Drawing.Point(13, 244);
+            this.lblSharp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSharp.Name = "lblSharp";
-            this.lblSharp.Size = new System.Drawing.Size(692, 1);
+            this.lblSharp.Size = new System.Drawing.Size(922, 1);
             this.lblSharp.TabIndex = 18;
             this.lblSharp.Text = "label1";
             // 
             // txtNickName
             // 
             this.txtNickName.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtNickName.Location = new System.Drawing.Point(144, 278);
+            this.txtNickName.Location = new System.Drawing.Point(192, 348);
+            this.txtNickName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNickName.Name = "txtNickName";
-            this.txtNickName.Size = new System.Drawing.Size(558, 31);
+            this.txtNickName.Size = new System.Drawing.Size(743, 37);
             this.txtNickName.TabIndex = 3;
             this.txtNickName.Leave += new System.EventHandler(this.txtNickName_Leave);
             // 
@@ -247,26 +265,29 @@ namespace PSOChatLog
             // 
             this.lblNickName.AutoSize = true;
             this.lblNickName.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNickName.Location = new System.Drawing.Point(12, 281);
+            this.lblNickName.Location = new System.Drawing.Point(16, 351);
+            this.lblNickName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNickName.Name = "lblNickName";
-            this.lblNickName.Size = new System.Drawing.Size(119, 24);
+            this.lblNickName.Size = new System.Drawing.Size(145, 30);
             this.lblNickName.TabIndex = 2;
             this.lblNickName.Text = "ニックネーム";
             // 
             // txtInputID
             // 
             this.txtInputID.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtInputID.Location = new System.Drawing.Point(10, 242);
+            this.txtInputID.Location = new System.Drawing.Point(13, 302);
+            this.txtInputID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtInputID.Name = "txtInputID";
-            this.txtInputID.Size = new System.Drawing.Size(120, 31);
+            this.txtInputID.Size = new System.Drawing.Size(159, 37);
             this.txtInputID.TabIndex = 0;
             // 
             // btnIDSerch
             // 
             this.btnIDSerch.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnIDSerch.Location = new System.Drawing.Point(144, 240);
+            this.btnIDSerch.Location = new System.Drawing.Point(192, 300);
+            this.btnIDSerch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnIDSerch.Name = "btnIDSerch";
-            this.btnIDSerch.Size = new System.Drawing.Size(150, 34);
+            this.btnIDSerch.Size = new System.Drawing.Size(200, 42);
             this.btnIDSerch.TabIndex = 1;
             this.btnIDSerch.Text = "ID検索";
             this.btnIDSerch.UseVisualStyleBackColor = true;
@@ -275,38 +296,42 @@ namespace PSOChatLog
             // lstCharacterList
             // 
             this.lstCharacterList.FormattingEnabled = true;
-            this.lstCharacterList.ItemHeight = 12;
-            this.lstCharacterList.Location = new System.Drawing.Point(12, 339);
+            this.lstCharacterList.ItemHeight = 15;
+            this.lstCharacterList.Location = new System.Drawing.Point(16, 424);
+            this.lstCharacterList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstCharacterList.Name = "lstCharacterList";
-            this.lstCharacterList.Size = new System.Drawing.Size(370, 208);
+            this.lstCharacterList.Size = new System.Drawing.Size(492, 259);
             this.lstCharacterList.TabIndex = 7;
             // 
             // lblRemarks
             // 
             this.lblRemarks.AutoSize = true;
             this.lblRemarks.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblRemarks.Location = new System.Drawing.Point(384, 312);
+            this.lblRemarks.Location = new System.Drawing.Point(512, 390);
+            this.lblRemarks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRemarks.Name = "lblRemarks";
-            this.lblRemarks.Size = new System.Drawing.Size(58, 24);
+            this.lblRemarks.Size = new System.Drawing.Size(73, 30);
             this.lblRemarks.TabIndex = 4;
             this.lblRemarks.Text = "備考";
             // 
             // txtRemarks
             // 
             this.txtRemarks.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.txtRemarks.Location = new System.Drawing.Point(388, 339);
+            this.txtRemarks.Location = new System.Drawing.Point(517, 424);
+            this.txtRemarks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(314, 208);
+            this.txtRemarks.Size = new System.Drawing.Size(417, 259);
             this.txtRemarks.TabIndex = 5;
             this.txtRemarks.Leave += new System.EventHandler(this.txtRemarks_Leave);
             // 
             // btnLogAnalysis
             // 
             this.btnLogAnalysis.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnLogAnalysis.Location = new System.Drawing.Point(300, 240);
+            this.btnLogAnalysis.Location = new System.Drawing.Point(400, 300);
+            this.btnLogAnalysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogAnalysis.Name = "btnLogAnalysis";
-            this.btnLogAnalysis.Size = new System.Drawing.Size(200, 34);
+            this.btnLogAnalysis.Size = new System.Drawing.Size(267, 42);
             this.btnLogAnalysis.TabIndex = 25;
             this.btnLogAnalysis.Text = "チャットログを分析";
             this.btnLogAnalysis.UseVisualStyleBackColor = true;
@@ -316,26 +341,29 @@ namespace PSOChatLog
             // 
             this.lblCharacterList.AutoSize = true;
             this.lblCharacterList.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblCharacterList.Location = new System.Drawing.Point(12, 312);
+            this.lblCharacterList.Location = new System.Drawing.Point(16, 390);
+            this.lblCharacterList.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCharacterList.Name = "lblCharacterList";
-            this.lblCharacterList.Size = new System.Drawing.Size(166, 24);
+            this.lblCharacterList.Size = new System.Drawing.Size(206, 30);
             this.lblCharacterList.TabIndex = 6;
             this.lblCharacterList.Text = "キャラクターリスト";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(506, 240);
+            this.progressBar1.Location = new System.Drawing.Point(675, 300);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(196, 33);
+            this.progressBar1.Size = new System.Drawing.Size(261, 41);
             this.progressBar1.TabIndex = 26;
             this.progressBar1.Visible = false;
             // 
             // btnSTOP
             // 
             this.btnSTOP.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnSTOP.Location = new System.Drawing.Point(300, 240);
+            this.btnSTOP.Location = new System.Drawing.Point(400, 300);
+            this.btnSTOP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSTOP.Name = "btnSTOP";
-            this.btnSTOP.Size = new System.Drawing.Size(200, 34);
+            this.btnSTOP.Size = new System.Drawing.Size(267, 42);
             this.btnSTOP.TabIndex = 27;
             this.btnSTOP.Text = "分析を停止";
             this.btnSTOP.UseVisualStyleBackColor = true;
@@ -346,17 +374,19 @@ namespace PSOChatLog
             // 
             this.cboSelectAnalysis.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cboSelectAnalysis.FormattingEnabled = true;
-            this.cboSelectAnalysis.Location = new System.Drawing.Point(506, 240);
+            this.cboSelectAnalysis.Location = new System.Drawing.Point(675, 300);
+            this.cboSelectAnalysis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboSelectAnalysis.Name = "cboSelectAnalysis";
-            this.cboSelectAnalysis.Size = new System.Drawing.Size(196, 32);
+            this.cboSelectAnalysis.Size = new System.Drawing.Size(260, 38);
             this.cboSelectAnalysis.TabIndex = 28;
             // 
             // NICT
             // 
             this.NICT.AutoSize = true;
-            this.NICT.Location = new System.Drawing.Point(608, 12);
+            this.NICT.Location = new System.Drawing.Point(811, 15);
+            this.NICT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NICT.Name = "NICT";
-            this.NICT.Size = new System.Drawing.Size(94, 12);
+            this.NICT.Size = new System.Drawing.Size(119, 15);
             this.NICT.TabIndex = 29;
             this.NICT.Text = "Powered by NICT";
             // 
@@ -364,11 +394,10 @@ namespace PSOChatLog
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // ChatDetail
+            // frmChatDetail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(1043, 701);
             this.Controls.Add(this.NICT);
             this.Controls.Add(this.lblCharacterList);
             this.Controls.Add(this.txtRemarks);
@@ -399,9 +428,10 @@ namespace PSOChatLog
             this.Controls.Add(this.btnSTOP);
             this.Controls.Add(this.cboSelectAnalysis);
             this.Controls.Add(this.progressBar1);
-            this.MaximumSize = new System.Drawing.Size(800, 2400);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
-            this.Name = "ChatDetail";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximumSize = new System.Drawing.Size(1061, 2988);
+            this.MinimumSize = new System.Drawing.Size(1061, 738);
+            this.Name = "frmChatDetail";
             this.Text = "チャット詳細";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatDetail_FormClosing);
             this.Load += new System.EventHandler(this.ChatDetail_Load);

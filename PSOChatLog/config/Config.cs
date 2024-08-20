@@ -8,6 +8,6 @@ namespace PSOChatLog
 {
     public class Config
     {
-        public static string VERSION { get; } = "0.61";
+        public static string VERSION { get; } = "0.76";
     }
 }

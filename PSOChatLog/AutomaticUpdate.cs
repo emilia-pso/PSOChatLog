@@ -82,7 +82,7 @@ namespace PSOChatLog
                 var URLCheckVer = "https://www.emilia-pso.com/PSOChatLog/Archive/PSOChatLog_VerCheck.txt";
                 strResult = await httpClient.GetStringAsync(URLCheckVer);
 
-                //"{\r\n\t\"Version\": \"0.61\",\r\n\t\"FileName\": \"PSOChatLog_ver0.61.zip\"\r\n}"
+                //"{\r\n\t\"Version\": \"0.76\",\r\n\t\"FileName\": \"PSOChatLog_ver0.76.zip\"\r\n}"
                 if (ConvertJsonToStringRegexGeneralPurpose(strResult, ref strVersion, "Version\": \"", "\",\r\n\t\"") == false)
                 {
                     break;
@@ -95,7 +95,7 @@ namespace PSOChatLog
                 {
                     break;
                 }
-                //"{\r\n\t\"Version\": \"0.61\",\r\n\t\"FileName\": \"PSOChatLog_ver0.61.zip\"\r\n}"
+                //"{\r\n\t\"Version\": \"0.76\",\r\n\t\"FileName\": \"PSOChatLog_ver0.76.zip\"\r\n}"
                 if (ConvertJsonToStringRegexGeneralPurpose(strResult, ref strFileName, "\"FileName\\\": \\\"", "\"\r\n}") == false)
                 {
                     break;
@@ -121,7 +121,7 @@ namespace PSOChatLog
                 var PathDownload = System.Environment.CurrentDirectory + "\\Archive\\".Trim();
 
                 Directory.CreateDirectory(PathDownload);
-                //"C:\\Users\\admin\\source\\repos\\PSOChatLog\\PSOChatLog\\bin\\Debug\\Archive\\PSOChatLog_ver0.61.zip"
+                //"C:\\Users\\admin\\source\\repos\\PSOChatLog\\PSOChatLog\\bin\\Debug\\Archive\\PSOChatLog_ver0.76.zip"
                 PathDownload = PathDownload + this.AwaitFileNameDownload.Trim();
 
                 var URLDownloadBase = "https://www.emilia-pso.com/PSOChatLog/Archive/";

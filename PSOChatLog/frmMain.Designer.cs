@@ -60,6 +60,7 @@ namespace PSOChatLog
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,27 +69,28 @@ namespace PSOChatLog
             this.listBox1.FormattingEnabled = true;
             this.listBox1.HorizontalScrollbar = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(12, 39);
+            this.listBox1.Location = new System.Drawing.Point(13, 63);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(480, 316);
+            this.listBox1.Size = new System.Drawing.Size(480, 280);
             this.listBox1.TabIndex = 5;
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             this.listBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseUp);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 410);
+            this.textBox1.Location = new System.Drawing.Point(13, 408);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(388, 19);
+            this.textBox1.Size = new System.Drawing.Size(362, 19);
             this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // Button1
             // 
-            this.Button1.Location = new System.Drawing.Point(406, 408);
+            this.Button1.Location = new System.Drawing.Point(383, 408);
+            this.Button1.Margin = new System.Windows.Forms.Padding(4);
             this.Button1.Name = "Button1";
-            this.Button1.Size = new System.Drawing.Size(40, 23);
+            this.Button1.Size = new System.Drawing.Size(50, 20);
             this.Button1.TabIndex = 1;
             this.Button1.Text = "和英";
             this.Button1.UseVisualStyleBackColor = true;
@@ -96,9 +98,10 @@ namespace PSOChatLog
             // 
             // Button2
             // 
-            this.Button2.Location = new System.Drawing.Point(406, 386);
+            this.Button2.Location = new System.Drawing.Point(383, 381);
+            this.Button2.Margin = new System.Windows.Forms.Padding(4);
             this.Button2.Name = "Button2";
-            this.Button2.Size = new System.Drawing.Size(40, 23);
+            this.Button2.Size = new System.Drawing.Size(50, 20);
             this.Button2.TabIndex = 4;
             this.Button2.Text = "英和";
             this.Button2.UseVisualStyleBackColor = true;
@@ -106,17 +109,18 @@ namespace PSOChatLog
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 388);
+            this.textBox2.Location = new System.Drawing.Point(13, 382);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(388, 19);
+            this.textBox2.Size = new System.Drawing.Size(362, 19);
             this.textBox2.TabIndex = 3;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // Button3
             // 
-            this.Button3.Location = new System.Drawing.Point(452, 408);
+            this.Button3.Location = new System.Drawing.Point(441, 408);
+            this.Button3.Margin = new System.Windows.Forms.Padding(4);
             this.Button3.Name = "Button3";
-            this.Button3.Size = new System.Drawing.Size(40, 23);
+            this.Button3.Size = new System.Drawing.Size(50, 20);
             this.Button3.TabIndex = 2;
             this.Button3.Text = "送信";
             this.Button3.UseVisualStyleBackColor = true;
@@ -124,9 +128,10 @@ namespace PSOChatLog
             // 
             // Button4
             // 
-            this.Button4.Location = new System.Drawing.Point(452, 386);
+            this.Button4.Location = new System.Drawing.Point(441, 381);
+            this.Button4.Margin = new System.Windows.Forms.Padding(4);
             this.Button4.Name = "Button4";
-            this.Button4.Size = new System.Drawing.Size(40, 23);
+            this.Button4.Size = new System.Drawing.Size(50, 20);
             this.Button4.TabIndex = 6;
             this.Button4.Text = "設定";
             this.Button4.UseVisualStyleBackColor = true;
@@ -150,14 +155,16 @@ namespace PSOChatLog
             "繁体字",
             "日本語",
             "조선어"});
-            this.comboBox1.Location = new System.Drawing.Point(365, 12);
+            this.comboBox1.Location = new System.Drawing.Point(401, 35);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(127, 20);
+            this.comboBox1.Size = new System.Drawing.Size(90, 20);
             this.comboBox1.TabIndex = 7;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
@@ -173,7 +180,8 @@ namespace PSOChatLog
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(303, 15);
+            this.label1.Location = new System.Drawing.Point(337, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 12);
             this.label1.TabIndex = 8;
@@ -182,7 +190,8 @@ namespace PSOChatLog
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(302, 364);
+            this.label2.Location = new System.Drawing.Point(337, 354);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 12);
             this.label2.TabIndex = 10;
@@ -203,17 +212,19 @@ namespace PSOChatLog
             "繁体字",
             "日本語",
             "조선어"});
-            this.comboBox2.Location = new System.Drawing.Point(365, 361);
+            this.comboBox2.Location = new System.Drawing.Point(401, 351);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(127, 20);
+            this.comboBox2.Size = new System.Drawing.Size(90, 20);
             this.comboBox2.TabIndex = 9;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // Button5
             // 
-            this.Button5.Location = new System.Drawing.Point(12, 12);
+            this.Button5.Location = new System.Drawing.Point(13, 35);
+            this.Button5.Margin = new System.Windows.Forms.Padding(4);
             this.Button5.Name = "Button5";
-            this.Button5.Size = new System.Drawing.Size(75, 23);
+            this.Button5.Size = new System.Drawing.Size(70, 20);
             this.Button5.TabIndex = 11;
             this.Button5.Text = "GoToLobby";
             this.Button5.UseVisualStyleBackColor = true;
@@ -222,7 +233,8 @@ namespace PSOChatLog
             // NICT
             // 
             this.NICT.AutoSize = true;
-            this.NICT.Location = new System.Drawing.Point(202, 15);
+            this.NICT.Location = new System.Drawing.Point(397, 19);
+            this.NICT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.NICT.Name = "NICT";
             this.NICT.Size = new System.Drawing.Size(94, 12);
             this.NICT.TabIndex = 12;
@@ -231,9 +243,10 @@ namespace PSOChatLog
             // button6
             // 
             this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(93, 12);
+            this.button6.Location = new System.Drawing.Point(169, 35);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(70, 20);
             this.button6.TabIndex = 13;
             this.button6.Text = "UpDate";
             this.button6.UseVisualStyleBackColor = true;
@@ -243,19 +256,21 @@ namespace PSOChatLog
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 38);
+            this.listView1.Location = new System.Drawing.Point(13, 63);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(480, 317);
+            this.listView1.Size = new System.Drawing.Size(480, 280);
             this.listView1.TabIndex = 14;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(12, 359);
+            this.button7.Location = new System.Drawing.Point(13, 352);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(23, 23);
+            this.button7.Size = new System.Drawing.Size(23, 22);
             this.button7.TabIndex = 15;
             this.button7.Text = "0";
             this.button7.UseVisualStyleBackColor = true;
@@ -263,9 +278,10 @@ namespace PSOChatLog
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(41, 359);
+            this.button8.Location = new System.Drawing.Point(44, 352);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(23, 23);
+            this.button8.Size = new System.Drawing.Size(23, 22);
             this.button8.TabIndex = 16;
             this.button8.Text = "1";
             this.button8.UseVisualStyleBackColor = true;
@@ -273,9 +289,10 @@ namespace PSOChatLog
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(70, 359);
+            this.button9.Location = new System.Drawing.Point(75, 352);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(23, 23);
+            this.button9.Size = new System.Drawing.Size(23, 22);
             this.button9.TabIndex = 17;
             this.button9.Text = "2";
             this.button9.UseVisualStyleBackColor = true;
@@ -283,9 +300,10 @@ namespace PSOChatLog
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(99, 359);
+            this.button10.Location = new System.Drawing.Point(106, 352);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(23, 23);
+            this.button10.Size = new System.Drawing.Size(23, 22);
             this.button10.TabIndex = 18;
             this.button10.Text = "3";
             this.button10.UseVisualStyleBackColor = true;
@@ -293,9 +311,10 @@ namespace PSOChatLog
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(128, 359);
+            this.button11.Location = new System.Drawing.Point(137, 352);
+            this.button11.Margin = new System.Windows.Forms.Padding(4);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(23, 23);
+            this.button11.Size = new System.Drawing.Size(23, 22);
             this.button11.TabIndex = 19;
             this.button11.Text = "4";
             this.button11.UseVisualStyleBackColor = true;
@@ -303,9 +322,10 @@ namespace PSOChatLog
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(157, 359);
+            this.button12.Location = new System.Drawing.Point(168, 352);
+            this.button12.Margin = new System.Windows.Forms.Padding(4);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(23, 23);
+            this.button12.Size = new System.Drawing.Size(23, 22);
             this.button12.TabIndex = 20;
             this.button12.Text = "5";
             this.button12.UseVisualStyleBackColor = true;
@@ -313,9 +333,10 @@ namespace PSOChatLog
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(186, 359);
+            this.button13.Location = new System.Drawing.Point(199, 352);
+            this.button13.Margin = new System.Windows.Forms.Padding(4);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(23, 23);
+            this.button13.Size = new System.Drawing.Size(23, 22);
             this.button13.TabIndex = 21;
             this.button13.Text = "6";
             this.button13.UseVisualStyleBackColor = true;
@@ -323,9 +344,10 @@ namespace PSOChatLog
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(215, 359);
+            this.button14.Location = new System.Drawing.Point(230, 352);
+            this.button14.Margin = new System.Windows.Forms.Padding(4);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(23, 23);
+            this.button14.Size = new System.Drawing.Size(23, 22);
             this.button14.TabIndex = 22;
             this.button14.Text = "7";
             this.button14.UseVisualStyleBackColor = true;
@@ -333,9 +355,10 @@ namespace PSOChatLog
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(244, 359);
+            this.button15.Location = new System.Drawing.Point(261, 352);
+            this.button15.Margin = new System.Windows.Forms.Padding(4);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(23, 23);
+            this.button15.Size = new System.Drawing.Size(23, 22);
             this.button15.TabIndex = 23;
             this.button15.Text = "8";
             this.button15.UseVisualStyleBackColor = true;
@@ -343,19 +366,31 @@ namespace PSOChatLog
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(273, 359);
+            this.button16.Location = new System.Drawing.Point(292, 352);
+            this.button16.Margin = new System.Windows.Forms.Padding(4);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(23, 23);
+            this.button16.Size = new System.Drawing.Size(23, 22);
             this.button16.TabIndex = 24;
             this.button16.Text = "9";
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(91, 35);
+            this.button17.Margin = new System.Windows.Forms.Padding(4);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(70, 20);
+            this.button17.TabIndex = 25;
+            this.button17.Text = "SerchINI";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(504, 441);
+            this.Controls.Add(this.button17);
             this.Controls.Add(this.button16);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
@@ -381,9 +416,10 @@ namespace PSOChatLog
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.listBox1);
-            this.MinimumSize = new System.Drawing.Size(520, 39);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(520, 200);
             this.Name = "frmMain";
-            this.Text = "PSO Chat Log Ver 0.61";
+            this.Text = "PSO Chat Log Ver 0.76";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResizeEnd += new System.EventHandler(this.frmMain_ResizeEnd);
@@ -424,6 +460,7 @@ namespace PSOChatLog
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
     }
 }
 

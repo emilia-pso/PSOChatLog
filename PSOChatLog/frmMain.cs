@@ -12,6 +12,7 @@ using Binarysharp.MemoryManagement;
 using Binarysharp.MemoryManagement.Assembly.CallingConvention;
 using LanguageDetection;
 using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -70,6 +71,7 @@ namespace PSOChatLog
         private System.IO.FileSystemWatcher watcherAddons1 = null;
         private System.IO.FileSystemWatcher watcherAddons2 = null;
         private System.IO.FileSystemWatcher watcherAddons3 = null;
+        private System.IO.FileSystemWatcher watcherAddons4 = null;
         private LanguageDetection.LanguageDetector LDJAVA2014 = null;
         private WebClient webClientDeepLBuiltin = new WebClient();
         static readonly HttpClient httpClient = new HttpClient();
@@ -100,6 +102,9 @@ namespace PSOChatLog
         {
             messageFilter = new MessageFilter();
             System.Windows.Forms.Application.AddMessageFilter(messageFilter);
+
+            button6.Enabled = false;
+            button6.Visible = false;
 
             //設定を読込
             var strIniFileName = ".\\" + Value.strEnvironment + ".ini";
@@ -248,6 +253,7 @@ namespace PSOChatLog
                 WatcherStartAddonsChatlog(strInstallPath);
                 WatcherStartAddonsPSOChatLogSupport(strInstallPath);
                 WatcherStartAddonsSimpleMailReader(strInstallPath);
+                WatcherStartAddonsSimpleMaillog(strInstallPath);
 
                 // ロギングのサンプルだよ。
                 //logger.print(strInstallPath);
@@ -471,6 +477,59 @@ namespace PSOChatLog
             }
             while (false);
         }
+        private void WatcherStartAddonsSimpleMaillog(string strInstallPath)
+        {
+            var strLogPath = "";
+            if (watcherAddons4 != null) return;
+            watcherAddons4 = new System.IO.FileSystemWatcher();
+            do
+            {
+                string filePath = strInstallPath;
+                if (File.Exists(filePath) == false)
+                {
+                    break;
+                }
+                strLogPath = GetFileNameFullPathToPathName(strInstallPath) + "addons\\SimpleMaillog\\log";
+                if (Directory.Exists(strLogPath) == false)
+                {
+                    break;
+                }
+                //C:\Users\admin\EphineaPSO\addons\Chatlog\log
+                watcherAddons4.Path = strLogPath;
+                //watcher.Path = @"C:\Users\admin\EphineaPSO\log";
+                //最終アクセス日時、最終更新日時、ファイル、フォルダ名の変更を監視する
+                /*
+                watcherAddons4.NotifyFilter =
+                (System.IO.NotifyFilters.LastAccess
+                | System.IO.NotifyFilters.LastWrite
+                | System.IO.NotifyFilters.FileName
+                | System.IO.NotifyFilters.DirectoryName);
+                */
+                watcherNormal.NotifyFilter =
+                (System.IO.NotifyFilters.LastWrite
+                | System.IO.NotifyFilters.FileName
+                | System.IO.NotifyFilters.DirectoryName);
+                //すべてのファイルを監視
+                watcherAddons4.Filter = "";
+                //UIのスレッドにマーシャリングする
+                //コンソールアプリケーションでの使用では必要ない
+                watcherAddons4.SynchronizingObject = this;
+
+                //バッファサイズを標準の4kbから、最大の64kbに増やす
+                //watcherAddons4.InternalBufferSize = 65536;
+
+                //イベントハンドラの追加
+                watcherAddons4.Changed += new System.IO.FileSystemEventHandler(watcher_ChangedSimpleMail);
+                watcherAddons4.Created += new System.IO.FileSystemEventHandler(watcher_ChangedSimpleMail);
+                //watcherAddons4.Deleted += new System.IO.FileSystemEventHandler(watcher_ChangedAddons);
+                //watcher.Renamed += new System.IO.RenamedEventHandler(watcher_Renamed);
+
+                //監視を開始する
+                watcherAddons4.EnableRaisingEvents = true;
+                //Console.WriteLine("監視を開始しました");
+            }
+            while (false);
+        }
         private void WatcherEnd()
         {
             //監視を終了
@@ -636,7 +695,11 @@ namespace PSOChatLog
             
             do
             {
-                stop();
+                //stop();
+                if (automaticUpdate.AwaitUpDateBTText == null)
+                {
+                    break;
+                }
                 if (automaticUpdate.AwaitUpDateBTText.Equals("Success") == false)
                 {
                     break;
@@ -721,7 +784,7 @@ namespace PSOChatLog
             }
             if (saveData != "")
             {
-                stop();
+                //stop();
                 System.IO.File.WriteAllText(strFileName, saveData);
             }
         }
@@ -752,7 +815,7 @@ namespace PSOChatLog
                 var strLogData = Regex.Split(strBuf, "\r\n");
                 for (int i = 0; i < strLogData.Length; i++)
                 {
-                    if (strLogData[i] == "")
+                    if (strLogData[i].Equals(""))
                     {
                         continue;
                     }
@@ -772,7 +835,7 @@ namespace PSOChatLog
                 //<listview>
                 listView1.Items.Clear();
                 string[] data = System.IO.File.ReadAllText(strFileName).Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                stop();
+                //stop();
                 foreach (string line in data)
                 {
                     //string[] items = line.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
@@ -1178,54 +1241,55 @@ namespace PSOChatLog
         }
         private void DoResize()
         {
+            //画面描画
             //リサイズ終了後、再描画とレイアウトロジックを実行する
-            //520x480 : 480x400
-            listBox1.Width = this.Width - 40;
-            listBox1.Height = this.Height - 164;//480時316
-            listView1.Width = this.Width - 40;
-            listView1.Height = this.Height - 164;//480時316
-            textBox1.Top = this.Height - 70;
-            textBox1.Left = 12;
-            textBox1.Width = this.Width - 132;//520時388
-            textBox1.Height = 19;//19
-            textBox2.Top = this.Height - 92;//480時388
-            textBox2.Left = 12;
-            textBox2.Width = this.Width - 132;//520時388
-            textBox2.Height = 19;//19
-            NICT.Top = this.Height - 115;//480時365
-            NICT.Left = 12;
-            //NICT.Width = this.Width - 426;//520時94
-            NICT.Height = 19;//19
+            var lNormalHeight =480;
+            var lNormalWidth = 520;
 
-            //label1.Top = this.Height - 465;//480-15
-            label1.Left = this.Width - 217;//520-303
-            //comboBox1.Top = this.Height - 468;//480-12
-            comboBox1.Left = this.Width - 155;//520-365
+            NICT.Left = this.Width - (lNormalWidth - 397);
 
-            label2.Top = this.Height - 115;//480-365
-            label2.Left = this.Width - 218;//520-302
-            comboBox2.Top = this.Height - 119;//480-361
-            comboBox2.Left = this.Width - 155;//520-365
+            label1.Left = this.Width - (lNormalWidth - 337);
+            comboBox1.Left = this.Width - (lNormalWidth - 401);
 
-            Button1.Top = this.Height - 72;//480-408
-            Button1.Left = this.Width - 114;//520-406
-            Button2.Top = this.Height - 94;//480-386
-            Button2.Left = this.Width - 114;//520-406
-            Button3.Top = this.Height - 72;//480-408
-            Button3.Left = this.Width - 70;//520-452
-            Button4.Top = this.Height - 94;//480-386
-            Button4.Left = this.Width - 70;//520-452
+            listBox1.Width = this.Width - (lNormalWidth - 480);
+            listBox1.Height = this.Height - (listBox1.Top + (lNormalHeight - listBox1.Top - 280));
+            listView1.Width = this.Width - (lNormalWidth - 480);
+            listView1.Height = this.Height - (listView1.Top + (lNormalHeight - listView1.Top - 280));
 
-            button7.Top = this.Height - 121;//480-359
-            button8.Top = this.Height - 121;//480-359
-            button9.Top = this.Height - 121;//480-359
-            button10.Top = this.Height - 121;//480-359
-            button11.Top = this.Height - 121;//480-359
-            button12.Top = this.Height - 121;//480-359
-            button13.Top = this.Height - 121;//480-359
-            button14.Top = this.Height - 121;//480-359
-            button15.Top = this.Height - 121;//480-359
-            button16.Top = this.Height - 121;//480-359
+            button7.Top = this.Height - (lNormalHeight - 352);
+            button8.Top = this.Height - (lNormalHeight - 352);
+            button9.Top = this.Height - (lNormalHeight - 352);
+            button10.Top = this.Height - (lNormalHeight - 352);
+            button11.Top = this.Height - (lNormalHeight - 352);
+            button12.Top = this.Height - (lNormalHeight - 352);
+            button13.Top = this.Height - (lNormalHeight - 352);
+            button14.Top = this.Height - (lNormalHeight - 352);
+            button15.Top = this.Height - (lNormalHeight - 352);
+            button16.Top = this.Height - (lNormalHeight - 352);
+
+            label2.Top = this.Height - (lNormalHeight - 354);
+            label2.Left = this.Width - (lNormalWidth - 337);
+            comboBox2.Top = this.Height - (lNormalHeight - 351);
+            comboBox2.Left = this.Width - (lNormalWidth - 401);
+
+            textBox1.Top = this.Height - (lNormalHeight - 382);
+            //textBox1.Left = 12;
+            textBox1.Width = this.Width - (lNormalWidth - 362);
+            //textBox1.Height = 19;//19
+            textBox2.Top = this.Height - (lNormalHeight - 409);
+            //textBox2.Left = 12;
+            textBox2.Width = this.Width - (lNormalWidth - 362);
+            //textBox2.Height = 19;//19
+
+            Button2.Top = this.Height - (lNormalHeight - 381);
+            Button2.Left = this.Width - (lNormalWidth - 383);
+            Button4.Top = this.Height - (lNormalHeight - 381);
+            Button4.Left = this.Width - (lNormalWidth - 441);
+            Button1.Top = this.Height - (lNormalHeight - 408);
+            Button1.Left = this.Width - (lNormalWidth - 383);
+            Button3.Top = this.Height - (lNormalHeight - 408);
+            Button3.Left = this.Width - (lNormalWidth - 441);
+
             this.Invalidate();
             this.PerformLayout();
             ListViewScrollCheckBottom(listView1);
@@ -1253,7 +1317,7 @@ namespace PSOChatLog
             cancellationTokenSource.Dispose();
             cancellationTokenSource = null;
 
-            stop();
+            //stop();
             do
             {
                 if (automaticUpdate.AwaitCheckVerResult == null)
@@ -1953,11 +2017,11 @@ namespace PSOChatLog
                         WriteChat("Ephinea: Phantasy Star Online Blue Burst", strImput);
                         //WriteChat("psobb.exe", strImput);
                     } while (false);
-                    if (PSOBBServer == "")
+                    if (PSOBBServer.Equals(""))
                     {
                         {
-                            //ウィンドウのタイトルに「Ephinea: Phantasy Star Online Blue Burst」を含むプロセスをすべて取得する
-                            Process[] ps = GetProcessesByWindowTitle("Phantasy Star Online Blue Burst");
+                            //ウィンドウのタイトルに「PHANTASY STAR ONLINE Blue Burst」を含むプロセスをすべて取得する
+                            Process[] ps = GetProcessesByWindowTitle("PHANTASY STAR ONLINE Blue Burst");
 
                             if (ps.Length == 0)
                             {
@@ -1970,8 +2034,7 @@ namespace PSOChatLog
                                 Microsoft.VisualBasic.Interaction.AppActivate(pPSOBB.MainWindowTitle);
                             }
 
-                            WriteChat("Phantasy Star Online Blue Burst", strImput);
-                            //WriteChat("psobb.exe", strImput);
+                            WriteChat("PHANTASY STAR ONLINE Blue Burst", strImput);
                         } while (false) ;
                     }
                 }
@@ -1991,7 +2054,7 @@ namespace PSOChatLog
                         break;
                     }
                 }
-                if (strRet == "")
+                if (strRet.Equals(""))   
                 {
                     break;
                 }
@@ -2000,12 +2063,12 @@ namespace PSOChatLog
         }
         private void WriteChat(string processName, string text)
         {
+            //stop();
             //text = gfGetCharacterLimit(text, 56);
             text = gfGetCharacterLimit(text, 70);//1バイトキャラのみの場合、最大で73バイト
             //text = gfGetCharacterLimit(text, 90);//2バイトキャラのみの場合、最大で55文字110バイト
             //text += '\0';
             text = "\tE" + text + '\0';
-
             Process[] ps = GetProcessesByWindowTitle(processName);
             MemorySharp ms = new(ps[0]);
 
@@ -2198,7 +2261,7 @@ namespace PSOChatLog
             psInfo.FileName = "Python";
 
             //引数があればセット
-            //psInfo.Arguments = (args == "") ? "" : string.Format("{0} {1}", program, args);
+            //psInfo.Arguments = (args.Equals("")) ? "" : string.Format("{0} {1}", program, args);
             psInfo.Arguments = (args.Equals("") ? "" : string.Format("{0} {1}", program, args));
 
             // プロセスを開始
@@ -2256,7 +2319,7 @@ namespace PSOChatLog
             psInfo.FileName = "cmd.exe";
 
             //引数があればセット
-            //psInfo.Arguments = (args == "") ? "" : string.Format("{0} {1}", program, args);
+            //psInfo.Arguments = (args.Equals("")) ? "" : string.Format("{0} {1}", program, args);
             psInfo.Arguments = (args.Equals("") ? "" : string.Format("{0} {1}", program, args));
 
             // プロセスを開始
@@ -2318,7 +2381,7 @@ namespace PSOChatLog
             psInfo.FileName = "chcp";
 
             //引数があればセット
-            //psInfo.Arguments = (args == "") ? "" : string.Format("{0} {1}", program, args);
+            //psInfo.Arguments = (args.Equals("")) ? "" : string.Format("{0} {1}", program, args);
             //psInfo.Arguments = (args.Equals("") ? "" : string.Format("{0} {1}", program, args));
 
             // プロセスを開始
@@ -2454,7 +2517,7 @@ namespace PSOChatLog
         }
         public void gfChangeSelectListBox(string strUpDown, ref string strSelectedIndices)
         {
-            stop();
+            //stop();
             var strRet = "";
             do
             {
@@ -2504,7 +2567,7 @@ namespace PSOChatLog
         }
         public void gfChangeSelectListView(string strUpDown, ref string strSelectedIndices)
         {
-            stop();
+            //stop();
             var strRet = "";
             do
             {
@@ -2684,7 +2747,7 @@ namespace PSOChatLog
             var i = 0;
             //var listBoxScrollCheckBottom = ListBoxScrollCheckBottom(listBox1);
             var listboxtopindex = 0;
-            stop();
+            //stop();
             for (i = listBox1.Items.Count - 1; i >= 0; i--)
             {
                 strEmoji = "";
@@ -3533,7 +3596,6 @@ namespace PSOChatLog
             var strDeepLAPIFreeKey = ClsCallApiGetPrivateProfile.CallApiGetValueString(strEnvironment, "DeepL API Free Key", strIniFileName);
             var strDeepLAPIProKey = ClsCallApiGetPrivateProfile.CallApiGetValueString(strEnvironment, "DeepL API Pro Key", strIniFileName);
             var strGoogleAppsScriptsURL = ClsCallApiGetPrivateProfile.CallApiGetValueString(strEnvironment, "Google Apps Scripts URL", strIniFileName);
-
             timer1.Stop();
             //ListBoxScrollCheckBottom(listBox1);
             //ListViewScrollCheckBottom(listView1);
@@ -3750,8 +3812,8 @@ namespace PSOChatLog
                         break;
                     }
                     var strLangTarget = Language_GP.myLanguage_GP();
-                    if (strLangTarget.Equals("JA"))
-                    {
+                    //if (strLangTarget.Equals("JA"))
+                    //{
                         strAfterSlang = ConvertDictionarySlang(strSource, ref bHitFlg);
                         if (bHitFlg == true)
                         {
@@ -3761,7 +3823,7 @@ namespace PSOChatLog
                         {
                             strAfterSlang = strSource;
                         }
-                    }
+                    //}
                     /*
                     if (strLangTarget.Equals("EN"))
                     {
@@ -4028,6 +4090,7 @@ namespace PSOChatLog
                     break;
                 }
                 //同期で呼び出し
+                
                 strReturn = SyncCallTranslation(dtmAddLogDate, strSource, strLangTarget, strLangSource, ref strTranslator, strLogType, ref bBreakFlg);
             }
             while (false);
@@ -4143,31 +4206,54 @@ namespace PSOChatLog
                     { "target_lang", strLangTarget }
                 });
 
-                var res1 = await httpClient.PostAsync(param1EndPoint, content);
-                strJSON = res1.ToString();
+                //var res1 = await httpClient.PostAsync(param1EndPoint, content);
+                //strJSON = res1.ToString();
+
+                //例外キャッチ
+                try
+                {
+                    {
+                        var res = await httpClient.PostAsync(param1EndPoint, content);
+                        strJSON = await res.Content.ReadAsStringAsync();
+                    }
+                }
+                catch (System.Reflection.TargetInvocationException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (TaskCanceledException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (System.Exception e)
+                {
+                    Console.WriteLine(e.StackTrace);
+                }
+                //例外キャッチ終了
 
                 //リターンコードを取得する。
                 //"StatusCode: 200, ReasonPhrase: 'OK', Version: 1.1, Content: System.Net.Http.StreamContent, Headers:\r\n{\r\n  access-control-allow-origin: *\r\n  strict-transport-security: max-age=63072000; includeSubDomains; preload\r\n  server-timing: l7_lb_tls;dur=556, l7_lb_idle;dur=0, l7_lb_receive;dur=5, l7_lb_total;dur=601\r\n  access-control-expose-headers: Server-Timing\r\n  Date: Sun, 26 Mar 2023 02:36:28 GMT\r\n  Server: nginx\r\n  Content-Length: 104\r\n  Content-Type: application/json\r\n}"
-                if (ConvertJsonToStringRegexGeneralPurpose(strJSON, ref strCode, "StatusCode..", ",") == false)
-                {
-                    break;
-                }
-                if (strCode.Equals("200") == false)
-                {
-                    //200以外ならエラーメッセージを取得する。
-                    if (ConvertJsonToStringRegexGeneralPurpose(strJSON, ref strMessageError, ".*text\x22:\x22", "\\x22") == false)
-                    {
-                        ArryClsListBoxPreWriteBufferAddNewLog(dtmAddLogDate, "", "ErrMsg", false, "", DateTime.Now.ToString("HH:mm:ss"), "--------", "--------", strTranslator + " API call error " + strCode + " = " + strMessageError);
-                        break;
-                    }
-                    break;
-                }
+                //{"translations":[{"detected_source_language":"EN","text":"これはテストメッセージです。"}]}
+                //if (ConvertJsonToStringRegexGeneralPurpose(strJSON, ref strCode, "StatusCode..", ",") == false)
+                //{
+                //    break;
+                //}
+                //if (strCode.Equals("200") == false)
+                //{
+                //    //200以外ならエラーメッセージを取得する。
+                //    if (ConvertJsonToStringRegexGeneralPurpose(strJSON, ref strMessageError, ".*text\x22:\x22", "\\x22") == false)
+                //    {
+                //        ArryClsListBoxPreWriteBufferAddNewLog(dtmAddLogDate, "", "ErrMsg", false, "", DateTime.Now.ToString("HH:mm:ss"), "--------", "--------", strTranslator + " API call error " + strCode + " = " + strMessageError);
+                //        break;
+                //    }
+                //    break;
+                //}
                 //リターンコードが200なら正常終了
                 //"result":{"text":"\u30c6\u30b9\u30c8"
                 //翻訳文字列を取得する。
 
-                var res2 = await res1.Content.ReadAsStringAsync();
-                strJSON = res2.ToString();
+                //var res2 = await res1.Content.ReadAsStringAsync();
+                //strJSON = res2.ToString();
 
                 if (ConvertJsonToStringRegexGeneralPurpose(strJSON, ref strMessageTarget, ".*text\x22:\x22", "\\x22") == false)
                 {
@@ -4191,11 +4277,11 @@ namespace PSOChatLog
                 {
                     strTranslator += " U";
                 }
-                stop();
+                //stop();
                 ListboxDisplayUpdateTranceAsync(strIndexNo, strTranslator, strLogType, strDateTime, strMemberID, strMember, strMessageTarget);
             } while (false);
         }
-        private async void ASyncCallTranslationGAS(DateTime dtmAddLogDate, string strSource, string strLangTarget, string strLangSource, string strLogType, string strIndexNo, string strDateTime, string strMemberID, string strMember, string strAfterTranslation)
+        private async void ASyncCallTranslationGAS_bak(DateTime dtmAddLogDate, string strSource, string strLangTarget, string strLangSource, string strLogType, string strIndexNo, string strDateTime, string strMemberID, string strMember, string strAfterTranslation)
         {
             var strTranslator = "Google";
             var strJSON = "";
@@ -4301,7 +4387,7 @@ namespace PSOChatLog
                 ListboxDisplayUpdateTranceAsync(strIndexNo, strTranslator, strLogType, strDateTime, strMemberID, strMember, strMessageTarget);
             } while (false);
         }
-        private async void ASyncCallTranslationGAS_try_catch_test(DateTime dtmAddLogDate, string strSource, string strLangTarget, string strLangSource, string strLogType, string strIndexNo, string strDateTime, string strMemberID, string strMember, string strAfterTranslation)
+        private async void ASyncCallTranslationGAS(DateTime dtmAddLogDate, string strSource, string strLangTarget, string strLangSource, string strLogType, string strIndexNo, string strDateTime, string strMemberID, string strMember, string strAfterTranslation)
         {
             var strTranslator = "Google";
             var strJSON = "";
@@ -4355,14 +4441,12 @@ namespace PSOChatLog
                 strSendJson = "{ \"value\" : \"" + strSource.Trim() + "\", \"source\" : \"" + strLangSource + "\", \"target\" : \"" + strLangTarget + "\"  }";
                 var content = new StringContent(strSendJson, Encoding.UTF8, "application/x-www-form-urlencoded");
 
+                //例外キャッチ
                 try
                 {
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-                    using (HttpClient hcClient = new HttpClient())
                     {
-                        var res = await hcClient.PostAsync(strGoogleAppsScriptsURL, content);
-
-                        string strRes = await res.Content.ReadAsStringAsync();
+                        var res = await httpClient.PostAsync(strGoogleAppsScriptsURL, content);
+                        strJSON = await res.Content.ReadAsStringAsync();
                     }
                 }
                 catch (System.Reflection.TargetInvocationException e)
@@ -4377,7 +4461,7 @@ namespace PSOChatLog
                 {
                     Console.WriteLine(e.StackTrace);
                 }
-                //stop();
+                //例外キャッチ終了
 
                 //"result":{"text":"\u30c6\u30b9\u30c8"
                 //翻訳文字列を取得する。
@@ -4522,32 +4606,56 @@ namespace PSOChatLog
                 //    { "salt", salt },
                 //    { "sign", sign }
                 //});
-                var res1 = await httpClient.GetAsync(url);
                 //var res1 = await httpClient.PostAsync(url, content);
-                strJSON = res1.ToString();
+                
+                //var res1 = await httpClient.GetAsync(url);
+                //strJSON = res1.ToString();
+
+                //例外キャッチ
+                try
+                {
+                    {
+                        var res = await httpClient.GetAsync(url);
+                        strJSON = await res.Content.ReadAsStringAsync();
+                    }
+                }
+                catch (System.Reflection.TargetInvocationException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (TaskCanceledException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                catch (System.Exception e)
+                {
+                    Console.WriteLine(e.StackTrace);
+                }
+                //例外キャッチ終了
 
                 //リターンコードを取得する。
                 //"StatusCode: 200, ReasonPhrase: 'OK', Version: 1.1, Content: System.Net.Http.StreamContent, Headers:\r\n{\r\n  Tracecode: 07931630100403871498032611\r\n  Date: Sun, 26 Mar 2023 03:13:13 GMT\r\n  P3P: CP=\" OTI DSP COR IVA OUR IND COM \"\r\n  Set-Cookie: BAIDUID=0BFC7F53979BAF430F0C8FEEA0267EF1:FG=1; expires=Mon, 25-Mar-24 03:13:13 GMT; max-age=31536000; path=/; domain=.baidu.com; version=1\r\n  Server: Apache\r\n  Content-Length: 160\r\n  Content-Type: application/json\r\n}"
-                if (ConvertJsonToStringRegexGeneralPurpose(strJSON, ref strCode, "StatusCode..", ",") == false)
-                {
-                    break;
-                }
-                if (strCode.Equals("200") == false)
-                {
-                    //200以外ならエラーメッセージを取得する。
-                    if (ConvertJsonToStringRegexGeneralPurpose(strJSON, ref strMessageError, ".*text\x22:\x22", "\\x22") == false)
-                    {
-                        ArryClsListBoxPreWriteBufferAddNewLog(dtmAddLogDate, "", "ErrMsg", false, "", DateTime.Now.ToString("HH:mm:ss"), "--------", "--------", strTranslator + " API call error " + strCode + " = " + strMessageError);
-                        break;
-                    }
-                    break;
-                }
+                //if (ConvertJsonToStringRegexGeneralPurpose(strJSON, ref strCode, "StatusCode..", ",") == false)
+                //{
+                //    break;
+                //}
+                //if (strCode.Equals("200") == false)
+                //{
+                //    //200以外ならエラーメッセージを取得する。
+                //    if (ConvertJsonToStringRegexGeneralPurpose(strJSON, ref strMessageError, ".*text\x22:\x22", "\\x22") == false)
+                //    {
+                //        ArryClsListBoxPreWriteBufferAddNewLog(dtmAddLogDate, "", "ErrMsg", false, "", DateTime.Now.ToString("HH:mm:ss"), "--------", "--------", strTranslator + " API call error " + strCode + " = " + strMessageError);
+                //        break;
+                //    }
+                //    break;
+                //}
                 //リターンコードが200なら正常終了
                 //"result":{"text":"\u30c6\u30b9\u30c8"
 
                 ////翻訳文字列を取得する。
-                var res2 = await res1.Content.ReadAsStringAsync();
-                strJSON = res2.ToString();
+                //var res2 = await res1.Content.ReadAsStringAsync();
+                //strJSON = res2.ToString();
+
                 //"{\"from\":\"en\",\"to\":\"jp\",\"trans_result\":[{\"src\":\"this is a test message\",\"dst\":\"\\u3053\\u308c\\u306f\\u30c6\\u30b9\\u30c8\\u30e1\\u30c3\\u30bb\\u30fc\\u30b8\\u3067\\u3059\"}]}"
                 if (ConvertJsonToStringRegexGeneralPurpose(strJSON, ref strMessageTarget, "dst\\x22.\\x22", "\\x22") == false)
                 {
@@ -5796,11 +5904,11 @@ namespace PSOChatLog
                 string strFileName = pathFrom[i].Replace(System.Environment.CurrentDirectory + "\\", "");
                 strSlangDictionary.Add(strFileName);
             }
-            //stop();
 
-            for (int i = 0; i < strSlangDictionary.Count - 1; i++)
+            for (int i = 0;
+                i < strSlangDictionary.Count;
+                i++)
             {
-                //stop();
                 if (strSlangDictionary[i].Equals("") == true)
                 {
                     continue;
@@ -5822,37 +5930,29 @@ namespace PSOChatLog
                         // 構造体型の変数作成
                         tyDictionarySlang SD = new tyDictionarySlang();
                         // 値の代入
-                        SD.Slang = " " +list[j].Substring(0, list[j].IndexOf(",")) + " ";
-                        SD.Dictionary = " " + list[j].Substring(list[j].IndexOf(",") + 1) + " ";
+                        //stop();
+                        SD.Slang = " " + list[j].Trim().Substring(0, list[j].IndexOf(",")) + " ";
+                        SD.Dictionary = " " + list[j].Trim().Substring(list[j].IndexOf(",") + 1) + " ";
                         // List への追加
                         stDictionarySlang.Add(SD);
                     } while (false);
                 }
-                //stop();
-
-                int sn = stDictionarySlang.Count;
-                for (int si = 0; si < sn - 1; si++)
+            }
+            int sn = stDictionarySlang.Count;
+            for (int i = 0; i < sn; i++)
+            {
+                //配列の回数分回す
+                for (int j = i; j < sn; j++)
                 {
-                    for (int sx = sn - 1; sx >= i + 1; sx--)
+                    //比較元より大きければ入れ替え
+                    if (stDictionarySlang[i].Slang.CompareTo(stDictionarySlang[j].Slang) == -1)
                     {
-                        //if (tyDictionarySlang[sx - 1] > tyDictionarySlang[sx])
-                        string str1 = stDictionarySlang[sx - 1].Slang;
-                        string str2 = stDictionarySlang[sx].Slang;
-                        //if (tyDictionarySlang[sx - 1] > tyDictionarySlang[sx])
-                        if (str1.CompareTo(str2) == -1)
-                        {
-                            string sc = stDictionarySlang[sx - 1].Slang;
-                            string sy = stDictionarySlang[sx - 1].Dictionary;
-                            stDictionarySlang[sx - 1] = stDictionarySlang[sx];
-                            // 構造体型の変数作成
-                            tyDictionarySlang SA = new tyDictionarySlang();
-                            SA.Slang = sc;
-                            SA.Dictionary = sy;
-                            stDictionarySlang[sx] = SA;
-                        }
+                        tyDictionarySlang x;
+                        x = stDictionarySlang[j];
+                        stDictionarySlang[j] = stDictionarySlang[i];
+                        stDictionarySlang[i] = x;
                     }
                 }
-                //stop();
             }
         }
         private void ShortTextRegistrationLoad()
@@ -5861,7 +5961,7 @@ namespace PSOChatLog
             var strFileName = System.Environment.CurrentDirectory + "\\ShortTextRegistration.csv";
             do
             {
-                if (strFileName == "")
+                if (strFileName.Equals(""))
                 {
                     break; ;
                 }
@@ -5925,7 +6025,7 @@ namespace PSOChatLog
                     saveData += stShortTextRegistration[i].iNum + "," + stShortTextRegistration[i].ShortText + Environment.NewLine;
                 }
             } while (false);
-            stop();
+            //stop();
             System.IO.File.WriteAllText(strFileName, saveData, Encoding.GetEncoding("UTF-8"));
         }
         private string ConvertDictionarySlang(string strData, ref bool bHitFlg)
@@ -5933,16 +6033,41 @@ namespace PSOChatLog
             bHitFlg = false;
             var strInput = " " + Microsoft.VisualBasic.Strings.StrConv(strData, VbStrConv.Lowercase) + " ";
             var strExt = strInput;
-            //stop();
-            for (int i = 0; i < stDictionarySlang.Count - 1; i++)
+
+            var strFirstLanguage_GP = Language_GP.myLanguage_GP();
+            var strLangSource = "";
+            do
             {
-                strExt = strExt.Replace(stDictionarySlang[i].Slang, stDictionarySlang[i].Dictionary);
-            }
-            if (strExt.Equals(strInput) == false)
-            {
-                bHitFlg = true;
-            }
-            strExt = strExt.Trim();
+                if (strFirstLanguage_GP.ToUpper() == "JA")
+                {
+                    //JP
+                    for (int i = 0; i < stDictionarySlang.Count; i++)
+                    {
+                        strExt = strExt.Replace(stDictionarySlang[i].Slang, stDictionarySlang[i].Dictionary);
+                    }
+                    if (strExt.Equals(strInput) == false)
+                    {
+                        bHitFlg = true;
+                    }
+                    strExt = strExt.Trim();
+                    break;
+                }
+                //stop();
+                //JP以外
+                for (int i = 0; i < stDictionarySlang.Count - 1; i++)
+                {
+                    if (isOneByteChar(stDictionarySlang[i].Dictionary) == false)
+                    {
+                        continue;
+                    }    
+                    strExt = strExt.Replace(stDictionarySlang[i].Slang, stDictionarySlang[i].Dictionary);
+                }
+                if (strExt.Equals(strInput) == false)
+                {
+                    bHitFlg = true;
+                }
+                strExt = strExt.Trim();
+            } while (false);
             return strExt;
         }
         private string ConvertCipherToCyrillic(DateTime dtmAddLogDate, string strLogType, string strSource)
@@ -6431,12 +6556,20 @@ namespace PSOChatLog
                         numBannerType = 9;
                         break;
                     }
-                    myCheck = Regex.IsMatch(strLastLine, "\\d\\d:\\d\\d:\\d\\d\\tbanner.*", RegexOptions.Singleline);
+                    myCheck = Regex.IsMatch(strLastLine, "\\d\\d:\\d\\d:\\d\\d\\tbanner.*INFO.*", RegexOptions.Singleline);
                     if (myCheck == true)
                     {
                         bDoTranslationFlg = true;
                         bChatDataFlg = true;
                         numBannerType = 10;
+                        break;
+                    }
+                    myCheck = Regex.IsMatch(strLastLine, "\\d\\d:\\d\\d:\\d\\d\\tbanner.*", RegexOptions.Singleline);
+                    if (myCheck == true)
+                    {
+                        bDoTranslationFlg = true;
+                        bChatDataFlg = true;
+                        numBannerType = 99;
                         break;
                     }
                     myCheck = Regex.IsMatch(strLastLine, "\\d\\d:\\d\\d:\\d\\d\\t.*\\t.*", RegexOptions.Singleline);
@@ -6717,8 +6850,20 @@ namespace PSOChatLog
                             strMemberID = "--------";
                             strDateTime = strBanner[0];
                         }
-                        //0:no banner//1:HBR Counts//2:Character Material Usage//3:Opening Message//4:Rare Drop//5:Lv200//6:killcount//7:You have had a change of fortune!//8:GM Chat or unknown
                         if (numBannerType == 10)
+                        {
+                            //stop();
+                            strSource = strLastLine.Substring(18);
+                            strSource = strSource.Replace("C3", "");
+                            strSource = strSource.Replace("C7", "");
+                            strSource = strSource.Replace("C6", "");
+                            strSource = strSource.Replace("\t", "");
+                            strMember = "INFO";
+                            strMemberID = "--------";
+                            strDateTime = strBanner[0];
+                        }
+                        //0:no banner//1:HBR Counts//2:Character Material Usage//3:Opening Message//4:Rare Drop//5:Lv200//6:killcount//7:You have had a change of fortune!//8:GM Chat or unknown
+                        if (numBannerType == 99)
                         {
                             strSource = strBanner[4].Substring(4);
                             strMember = strBanner[3].Substring(1);
@@ -6808,7 +6953,7 @@ namespace PSOChatLog
             var strSource = "";
             bBreakFlg = false;
             bDoTranslationFlg = true;
-
+            //stop();
             do
             {
                 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -6865,9 +7010,9 @@ namespace PSOChatLog
                 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             }
             while (false);
-            strMemberID = strTmp3.Trim();
+            strMemberID = strTmp2.Trim();
             strMember = strTmp1.Trim();
-            strDateTime = strTmp2.Trim();
+            strDateTime = strTmp3.Trim(); 
             return strSource;
         }
         //************************************************************************************************************************************************************************************************
@@ -6916,6 +7061,14 @@ namespace PSOChatLog
                     myCheck = true;
                 }
                 if (strLogType == "SimpleMail" && Regex.IsMatch(strFullPath, "SimpleMail\\d\\d\\d\\d\\d\\d\\d\\d.txt", RegexOptions.Singleline))
+                {
+                    myCheck = true;
+                }
+                if (strLogType == "SimpleMail" && Regex.IsMatch(strFullPath, "simpleMail\\d\\d\\d\\d\\d\\d\\d\\d.txt", RegexOptions.Singleline))
+                {
+                    myCheck = true;
+                }
+                if (strLogType == "SimpleMail" && Regex.IsMatch(strFullPath, "simple_mail\\d\\d\\d\\d\\d\\d\\d\\d.txt", RegexOptions.Singleline))
                 {
                     myCheck = true;
                 }
@@ -7781,11 +7934,12 @@ namespace PSOChatLog
         }
         private void Button1_Click(object sender, EventArgs e)
         {
+            System.Diagnostics.Debugger.Break();
             var bBreakFlg = false;
             Button1.Enabled = false;//再入防止兼再翻訳防止
             do
             {
-                if (textBox1.Text == "")
+                if (textBox1.Text.Equals(""))
                 {
                     break;
                 }
@@ -7839,7 +7993,7 @@ namespace PSOChatLog
                 strSource = strReturn1;
 
                 strReturn2 = SyncCallTranslation(DateTime.Now, strSource, strLangTarget, strLangSource, ref strTranslator, "FLtX", ref bBreakFlg);
-                if (comboBox2.Equals("Cipher") == false)
+                if (comboBox2.Text.Equals("Cipher") == true)
                 {
                     strReturn1 = ConvertCyrillicToCipher(DateTime.Now, "Screen", strReturn1);
                 }
@@ -7850,9 +8004,10 @@ namespace PSOChatLog
         }
         private void Button2_Click(object sender, EventArgs e)
         {
+            System.Diagnostics.Debugger.Break();
             do
             {
-                if (textBox2.Text == "")
+                if (textBox2.Text.Equals(""))
                 {
                     break;
                 }
@@ -7911,6 +8066,7 @@ namespace PSOChatLog
         {
             Button3.Enabled = false;//再入防止兼再翻訳防止
             SendTextChatLogToPSOBB(textBox1.Text.Trim());
+            textBox1.Text = "";
             Button3.Enabled = true;//再入防止解除
         }
         private void Button4_Click(object sender, EventArgs e)
@@ -7970,6 +8126,33 @@ namespace PSOChatLog
             while (false);
 
             Button5.Enabled = true;//再入防止解除
+        }
+        private void button17_Click(object sender, EventArgs e)
+        {
+            button17.Enabled = false;//再入防止
+            this.Visible = false;
+
+            var strIniFileName = ".\\" + Value.strEnvironment + ".ini";
+            var ClsCallApiGetPrivateProfile = new ClsCallApiGetPrivateProfile();
+            var strInstallPathBefore = ClsCallApiGetPrivateProfile.CallApiGetValueString(strEnvironment, "InstallPath", strIniFileName);
+
+            frmSearchIniFile frmSearchIniFile = new frmSearchIniFile();
+            frmSearchIniFile.ShowDialog();
+            ListControlUpdate();
+            ListBoxSetting();
+            ListViewSetting();
+
+            var strInstallPathAfter = ClsCallApiGetPrivateProfile.CallApiGetValueString(strEnvironment, "InstallPath", strIniFileName);
+
+            if (strInstallPathBefore.Equals(strInstallPathAfter) == false)
+            {
+                WatcherEnd();
+                gfWatcherStart();
+            }
+            OnLoad(e);
+
+            this.Visible = true;
+            button17.Enabled = true;//再入防止解除
         }
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
@@ -8199,18 +8382,12 @@ namespace PSOChatLog
             button16.Enabled = true;
             button16.Focus();
         }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-        }
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             var strRetNo = "";
             var iRetNo = 0;
             var strRetText = "";
-            stop();
+            //stop();
             do
             {
                 //キーが押されたか調べる
@@ -8220,7 +8397,7 @@ namespace PSOChatLog
                 }
                 var strCheck = "";
                 strCheck = textBox1.Text;
-                stop();
+                //stop();
                 //「/set_00_msg」
                 var myCheck02 = Regex.IsMatch(strCheck, "^\\x2F[sS][eE][tT]\\x20[sS]\\x20[0-9][0-9]\\x20.*", RegexOptions.Singleline);
                 //「/set_0_msg」
@@ -8245,7 +8422,7 @@ namespace PSOChatLog
                     {
                         break;
                     }
-                    stop();
+                    //stop();
                     ShortTextRegistrationWrite(iRetNo, strRetText);
                     ShortTextRegistrationSave();
                     ShortTextRegistrationLoad();
@@ -8284,8 +8461,18 @@ namespace PSOChatLog
         //************************************************************************************************************************************************************************************************
         public void stop()
         {
-            //System.Diagnostics.Debugger.Break();
+            System.Diagnostics.Debugger.Break();
         }
+    }
+    public struct tyTransData
+    {
+        public DateTime dtmAddLogDate;
+        public string strSource;
+        public string strLangTarget;
+        public string strLangSource;
+        public string strTranslator;
+        public string strLogType;
+        public bool bBreakFlg;
     }
     public struct tyDictionarySlang
     {
@@ -8363,7 +8550,7 @@ namespace PSOChatLog
 }
 internal class Value
 {
-    public static string strPSOChatLogVersionCurrent = "0.61";
+    public static string strPSOChatLogVersionCurrent = "0.76";
     public static long lIndexNoCurrent = 0;
     public const string strMDBFileName = "PSOChatLog";
 #if TexTra

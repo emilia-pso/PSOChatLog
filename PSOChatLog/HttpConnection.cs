@@ -524,7 +524,7 @@ public class HttpConnection : System.Runtime.CompilerServices.INotifyCompletion
                 authorizedUsername = accessTokenData[this.userIdentKey];
             else
                 authorizedUsername = "";
-            if (token == "")
+            if (token.Equals(""))
                 return false;
             return true;
         }
@@ -562,7 +562,7 @@ public class HttpConnection : System.Runtime.CompilerServices.INotifyCompletion
                 authorizedUsername = accessTokenData[this.userIdentKey];
             else
                 authorizedUsername = "";
-            if (token == "")
+            if (token.Equals(""))
                 return false;
             return true;
         }

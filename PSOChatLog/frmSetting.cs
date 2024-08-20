@@ -36,7 +36,7 @@ namespace PSOChatLog
         public frmSetting()
         {
             InitializeComponent();
-            Label.initializeForm2(this);
+            Label.initializeFrmSetting(this);
         }
         private void frmSetting_Load(object sender, EventArgs e)
         {
@@ -1195,7 +1195,7 @@ namespace PSOChatLog
 
                 for (int n = 0; n < strLine.Length; n++)
                 {
-                    if (strLine[n] == "")
+                    if (strLine[n].Equals(""))
                     {
                         continue;
                     }
@@ -1637,14 +1637,16 @@ namespace PSOChatLog
         {
             //800, 600
             //782, 520
-            tabControl1.Top = 0;
-            tabControl1.Left = 2;
-            tabControl1.Width = this.Width - 18;//800時782
-            tabControl1.Height = this.Height - 80;//600時520
-            NICT.Top = this.Height - 69;//600時531
-            //580, 526
-            Button1.Left = this.Width - 220;//800-580
-            Button1.Top = this.Height - 74;//600-526
+            var lNormalHeight = 740;
+            var lNormalWidth = 1061;
+            var lTabHeight = 26;
+            tabControl1.Height = this.Height - (tabControl1.Top + (lNormalHeight - tabControl1.Top - (624 + lTabHeight)));
+            tabControl1.Width = this.Width - (lNormalWidth - 1035);
+
+            NICT.Top = this.Height - (lNormalHeight - 664);
+
+            Button1.Top = this.Height - (lNormalHeight - 658);
+            Button1.Left = this.Width - (lNormalWidth - 773);
         }
 
         private void button12_Click(object sender, EventArgs e)

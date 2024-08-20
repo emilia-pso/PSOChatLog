@@ -359,7 +359,7 @@ namespace PSOChatLog
             var ClsCallApiGetPrivateProfile = new ClsCallApiGetPrivateProfile();
             var strInstallPath = ClsCallApiGetPrivateProfile.CallApiGetValueString(Value.strEnvironment, "InstallPath", strIniFileName);
 
-            if (strInstallPath == "")
+            if (strInstallPath.Equals(""))
             {
                 MessageBox.Show("strInstallPathが不正です。");
                 return;
